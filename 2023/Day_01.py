@@ -39,10 +39,16 @@ def replace_words_with_digits(original_text: str, replacements: Dict) -> str:
 def split_into_lines(text: str) -> List[str]:
     return text.split("\n")
 
+
 if __name__=="__main__":
-    input_data = load_input_data(r"2023\01_input.txt").lower()
+    input_data = load_input_data(r"2023\Day_01.txt").lower()
+    line_list1 = split_into_lines(input_data)
+    line_digits1 = (get_coordinate(get_digits(line)) for line in line_list1 if line)
+    result1 = sum(line_digits1)
+    print(result1)
+
     text2num = replace_words_with_digits(input_data, WORD2NUM)
-    line_list = split_into_lines(text2num)
-    line_digits = (get_coordinate(get_digits(line)) for line in line_list if line)
-    result = sum(line_digits)
-    print(result)
+    line_list2 = split_into_lines(text2num)
+    line_digits2 = (get_coordinate(get_digits(line)) for line in line_list2 if line)
+    result2 = sum(line_digits2)
+    print(result2)
