@@ -1,4 +1,5 @@
 import re
+from typing import Dict, List, Tuple
 
 DUMMY = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\n\
         Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\n\
@@ -7,7 +8,7 @@ DUMMY = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\n\
         Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green)\n\
         "
 
-def calculate_minimal_cubes(pick_list):
+def calculate_minimal_cubes(pick_list: List[int]) -> int:
     max_rgb = [0, 0, 0]
     for pick in pick_list:
         max_rgb = [max(max_rgb[id], elem) for id, elem in enumerate(pick)]
@@ -17,14 +18,14 @@ def load_input_data(path: str) -> str:
     with open(path, "r") as file:
         return file.read()
 
-def sum_game_ids(game_dict):
+def sum_game_ids(game_dict: Dict[str, Dict[str, int]]) -> int:
     valid_ids = (val["id"] for val in game_dict.values() if val["is_valid"])
     return sum(valid_ids)
 
-def sum_minimal_mult(game_dict):
+def sum_minimal_mult(game_dict: Dict[str, Dict[str, int]]) -> int:
     return sum(calculate_minimal_cubes(val.get("pick_list")) for val in game_dict.values())
 
-def text2dict(text):
+def text2dict(text: str) -> Dict[str, Dict[str, int]]:
     lines = text.split("\n")
     pattern_game = r"game (\d+)"
     game_dict = {}
@@ -58,7 +59,7 @@ def text2dict(text):
         game_dict[game_name]["pick_list"] = pick_list
     return game_dict
 
-def validate_dict(dict, max_vals):
+def validate_dict(dict: Dict[str, Dict[str, int]], max_vals: Tuple[int]) -> Dict[str, Dict[str, int]]:
     for name, val in dict.items():
         pick_list = val.get("pick_list")
         flag = False

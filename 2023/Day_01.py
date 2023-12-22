@@ -18,19 +18,19 @@ def filter_numbers_only(searched_text: str) -> str:
     filtered_list = re.findall(pattern, searched_text)
     return "".join(filtered_list)
 
-def get_coordinate(digit_list: List[int]) -> Tuple[int]:
-    if digit_list:
-        coordinate = int(digit_list[0] + digit_list[-1])
+def get_coordinate(digits: List[int]) -> Tuple[int]:
+    if digits:
+        coordinate = int(digits[0] + digits[-1])
         return coordinate
 
-def get_digits(string: str) -> List[int]:
-    return re.findall(r'\d', string)
+def get_digits(text: str) -> List[int]:
+    return re.findall(r'\d', text)
 
 def load_input_data(path: str) -> str:
     with open(path, "r") as file:
         return file.read()
 
-def replace_words_with_digits(original_text: str, replacements: Dict) -> str:
+def replace_words_with_digits(original_text: str, replacements: Dict[str, str]) -> str:
     filtered_text = filter_numbers_only(original_text)
     for num_text, num_digit in replacements.items():
         filtered_text = filtered_text.replace(num_text, num_digit)

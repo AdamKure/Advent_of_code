@@ -19,24 +19,19 @@ class Converter:
         map_list = [(int(dest), int(st), int(le)) for dest, st, le in maps]
         for map_dest, map_start, map_length in map_list:
             map_end = map_start+map_length
-            # if map_end < seed_start or seed_end < map_start:
-            #     return [(seed_start, seed_length)]
             if map_start <= seed_start < map_end:
                 offset = map_dest - map_start
                 if seed_end <= map_end:
                     return [(seed_start + offset, seed_length)]
-                head_length = map_end - seed_start
-                head = [(seed_start + offset, head_length)]
-                tail_start = map_end
-                tail_length = seed_end - map_end
-                tail = self.map_numbers(map_raw, (tail_start, tail_length))
+                head = [(seed_start + offset, map_end - seed_start)]
+                t = (map_end, seed_end - map_end)
+                tail = self.map_numbers(map_raw, t)
                 return head + tail
             if seed_start < map_start < seed_end:
-                head_length = map_start - seed_start
-                head = [(seed_start, head_length)]
-                tail_start = map_start
-                tail_length = seed_end - map_start
-                tail = self.map_numbers(map_raw, (tail_start, tail_length))
+                h = (seed_start, map_start - seed_start)
+                t = (map_start, seed_end - map_start)
+                head = self.map_numbers(map_raw, h)
+                tail = self.map_numbers(map_raw, t)
                 return head + tail
         return [(seed_start, seed_length)]
 
