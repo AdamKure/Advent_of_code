@@ -1,6 +1,7 @@
 import re
 import time
 
+
 class Converter:
     def __init__(self, s2s_map, s2f_map, f2w_map, w2l_map, l2t_map, t2h_map, h2l_map):
         self.s2s_map = s2s_map
@@ -18,7 +19,7 @@ class Converter:
         maps = [line.split(" ") for line in lines if line]
         map_list = [(int(dest), int(st), int(le)) for dest, st, le in maps]
         for map_dest, map_start, map_length in map_list:
-            map_end = map_start+map_length
+            map_end = map_start + map_length
             if map_start <= seed_start < map_end:
                 offset = map_dest - map_start
                 if seed_end <= map_end:
@@ -46,11 +47,21 @@ class Converter:
         res = [location[0] for lo in loc for location in lo]
         return res
 
+
 def main():
     with open(r"2023\Day_05.txt", "r") as file:
         input_data = file.read().lower()
 
-    seeds, seed2soil, soil2fert, fert2water, water2light, light2temp, temp2hum, hum2loc = input_data.split("\n\n")
+    (
+        seeds,
+        seed2soil,
+        soil2fert,
+        fert2water,
+        water2light,
+        light2temp,
+        temp2hum,
+        hum2loc,
+    ) = input_data.split("\n\n")
     _, s2s_map = seed2soil.split("\n", maxsplit=1)
     _, s2f_map = soil2fert.split("\n", maxsplit=1)
     _, f2w_map = fert2water.split("\n", maxsplit=1)
@@ -61,15 +72,20 @@ def main():
 
     Conv = Converter(s2s_map, s2f_map, f2w_map, w2l_map, l2t_map, t2h_map, h2l_map)
 
-    # Part 1 
+    # Part 1
     seed_nums = ((int(seed_num), 1) for seed_num in re.findall(r"(\d+)", seeds))
     locations = (Conv.seed2location(seed) for seed in seed_nums)
     print(min(location for loc_list in locations for location in loc_list))
 
     # Part 2
     seed_numbers = [int(seed_num) for seed_num in re.findall(r"(\d+)", seeds)]
-    seed_nums = ((seed_num, seed_numbers[2*index+1]) for index, seed_num in enumerate(seed_numbers[::2]))
-    locations = [location for seed in seed_nums for location in Conv.seed2location(seed)]
+    seed_nums = (
+        (seed_num, seed_numbers[2 * index + 1])
+        for index, seed_num in enumerate(seed_numbers[::2])
+    )
+    locations = [
+        location for seed in seed_nums for location in Conv.seed2location(seed)
+    ]
     print(min(locations))
 
 

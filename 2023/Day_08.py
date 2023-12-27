@@ -2,6 +2,7 @@ import re
 import time
 from math import lcm
 
+
 def main():
     with open(r"2023\Day_08.txt", "r") as file:
         input_data = file.readlines()
@@ -37,7 +38,7 @@ def main():
                 node = nodes[node][1]
             count += 1
         return count
-    
+
     a_nodes = [node for node in nodes.keys() if node[2] == "A"]
     lengths = [get_path_steps(node) for node in a_nodes]
     print(lcm(*lengths))

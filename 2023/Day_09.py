@@ -1,12 +1,14 @@
 import time
 from typing import List
 
+
 def find_zero_difs(history: List[int]):
-    difs = [history[i+1] - num for i, num in enumerate(history[:-1])]
+    difs = [history[i + 1] - num for i, num in enumerate(history[:-1])]
     if all(num == 0 for num in difs):
         return [history, difs]
     else:
         return [history] + find_zero_difs(difs)
+
 
 def main():
     with open(r"2023\Day_09.txt", "r") as file:
@@ -33,6 +35,7 @@ def main():
         predictions2.append(prediction)
 
     print(sum(predictions2))
+
 
 if __name__ == "__main__":
     start = time.perf_counter()
