@@ -38,12 +38,12 @@ class Converter:
 
     def seed2location(self, seed_num):
         soil = self.map_numbers(self.s2s_map, seed_num)
-        fert = [self.map_numbers(self.s2f_map, so) for so in soil]
-        water = [self.map_numbers(self.f2w_map, fe) for fe_li in fert for fe in fe_li]
-        light = [self.map_numbers(self.w2l_map, wa) for wa_li in water for wa in wa_li]
-        temp = [self.map_numbers(self.l2t_map, li) for li_li in light for li in li_li]
-        hum = [self.map_numbers(self.t2h_map, te) for te_li in temp for te in te_li]
-        loc = [self.map_numbers(self.h2l_map, hu) for hu_li in hum for hu in hu_li]
+        fert = (self.map_numbers(self.s2f_map, so) for so in soil)
+        water = (self.map_numbers(self.f2w_map, fe) for fe_li in fert for fe in fe_li)
+        light = (self.map_numbers(self.w2l_map, wa) for wa_li in water for wa in wa_li)
+        temp = (self.map_numbers(self.l2t_map, li) for li_li in light for li in li_li)
+        hum = (self.map_numbers(self.t2h_map, te) for te_li in temp for te in te_li)
+        loc = (self.map_numbers(self.h2l_map, hu) for hu_li in hum for hu in hu_li)
         res = [location[0] for lo in loc for location in lo]
         return res
 
