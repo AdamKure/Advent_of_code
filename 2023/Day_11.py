@@ -14,6 +14,14 @@ DUMMY = "...#......\n\
 #...#....."
 
 
+def calculate_shortest_paths(galaxies: List[List[int]]) -> List[int]:
+    dist = []
+    for i, gal1 in enumerate(galaxies[:-1]):
+        for gal2 in galaxies[i + 1 :]:
+            dist.append(abs(gal1[0] - gal2[0]) + abs(gal1[1] - gal2[1]))
+    return dist
+
+
 def compansate_for_expansion(
     galaxy_map: List[str], expansion_rate: int
 ) -> List[List[int]]:
@@ -80,20 +88,14 @@ def main():
         for j, ch in enumerate(line)
         if ch == "#"
     ]
-    dist = []
-    for i, gal1 in enumerate(galaxies[:-1]):
-        for gal2 in galaxies[i + 1 :]:
-            dist.append(abs(gal1[0] - gal2[0]) + abs(gal1[1] - gal2[1]))
-    print(f"Result 1 is: {sum(dist)}")
+    paths = calculate_shortest_paths(galaxies)
+    print(f"Result 1 is: {sum(paths)}")
 
     # Part 2
     expansion_rate = 10**6
     galaxies2 = compansate_for_expansion(input_data, expansion_rate)
-    dist2 = []
-    for i, gal1 in enumerate(galaxies2[:-1]):
-        for gal2 in galaxies2[i + 1 :]:
-            dist2.append(abs(gal1[0] - gal2[0]) + abs(gal1[1] - gal2[1]))
-    print(f"Result 2 is: {sum(dist2)}")
+    paths2 = paths = calculate_shortest_paths(galaxies2)
+    print(f"Result 2 is: {sum(paths2)}")
 
 
 if __name__ == "__main__":
