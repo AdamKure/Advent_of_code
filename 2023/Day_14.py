@@ -1,9 +1,8 @@
 import time
-from functools import cache
 
 
 class RockPositions:
-    def __init__(self, rows, cols, cubes, rounded):
+    def __init__(self, rows, cols, cubes, rounded) -> None:
         self.cols = cols
         self.cubes = cubes
         self.rounded = rounded
@@ -57,7 +56,6 @@ class ReflectorDish:
         return rock_pos
 
     def get_weight(self, rotations: int = 0) -> int:
-        # @cache
         def tilt_and_rotate(rock_pos):
             for _ in range(4):
                 rock_pos = self.__tilt(rock_pos)
@@ -73,7 +71,7 @@ class ReflectorDish:
                 rem = (rotations - cycle) % dif
                 print()
                 print(
-                    f"Current {cycle}, cycle repetition {dif}, new rot {rotations-rem}"
+                    f"Current {cycle}, cycle repetition {dif}, new cycle {rotations-rem}"
                 )
                 cycle = rotations - rem
                 cached = {}
@@ -82,8 +80,6 @@ class ReflectorDish:
             if cycle == 100000:
                 raise RuntimeError("Not cached after 10k iterations")
             cycle += 1
-        # printer(rock_pos)
-        # rock_pos = self.__tilt(rock_pos)
         rows = rock_pos.rows
         weight = 0
         for r, _ in rock_pos.rounded:
@@ -113,8 +109,8 @@ def main() -> None:
         input_data = file.read()
 
     # Part 1
-    # result1 = ReflectorDish(input_data).get_weight()
-    # print(f"Result 1 is: {result1}")
+    result1 = ReflectorDish(input_data).get_weight()
+    print(f"Result 1 is: {result1}")
 
     # Part 2
     cycles = 1000000000
