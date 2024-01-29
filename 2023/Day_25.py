@@ -1,5 +1,7 @@
 import time
 
+# serves as a template for now
+
 
 def main() -> None:
     with open("2023/Day_.txt", "r") as file:
