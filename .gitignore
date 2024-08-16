@@ -1,2 +1,3 @@
 AoC/
-2023/*.txt
+20*/*.txt
+*.code-workspace
