@@ -1,1 +1,2 @@
-Here I will be posting my solution to advent of code. Starting with problems of 2023 Advent.
+Here I will be posting my solutions to advent of code. Starting with Advent of Code 2023.
+Primary goal is to make the code functional, oten it will not be optimized or neatly formated.
