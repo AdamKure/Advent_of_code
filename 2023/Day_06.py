@@ -21,6 +21,7 @@ def race_record(time, record):
 
 
 def main():
+    # Part 1
     with open(r"2023\Day_06.txt", "r") as file:
         input_data = file.read().lower()
 
@@ -37,6 +38,7 @@ def main():
         result1 *= rec
     print(f"Result 1 is: {result1}")
 
+    # Part 2
     time = int("".join(times))
     distance = int("".join(distances))
     result2 = record_number(time, distance)
@@ -47,4 +49,4 @@ if __name__ == "__main__":
     start = time.perf_counter()
     main()
     end = time.perf_counter()
-    print(end - start)
+    print(f"\nExecuted in: {end - start} s")

@@ -1,4 +1,5 @@
 import re
+import time
 from typing import Dict, List, Tuple
 
 DUMMY = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\n\
@@ -86,7 +87,8 @@ def validate_dict(
     return dict
 
 
-if __name__ == "__main__":
+def main():
+    # Part 1
     input_data = load_input_data("2023/Day_02.txt").lower()
     game_dict = text2dict(input_data)
     max_vals = (12, 13, 14)
@@ -94,5 +96,13 @@ if __name__ == "__main__":
     result1 = sum_game_ids(game_dict)
     print(result1)
 
+    # Part 2
     result2 = sum_minimal_mult(game_dict)
     print(result2)
+
+
+if __name__ == "__main__":
+    start = time.perf_counter()
+    main()
+    end = time.perf_counter()
+    print(f"\nExecuted in: {end - start} s")

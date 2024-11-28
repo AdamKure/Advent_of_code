@@ -1,4 +1,5 @@
 import re
+import time
 
 DUMMY = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53\n\
 Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19\n\
@@ -46,4 +47,7 @@ def main():
 
 
 if __name__ == "__main__":
+    start = time.perf_counter()
     main()
+    end = time.perf_counter()
+    print(f"\nExecuted in: {end - start} s")

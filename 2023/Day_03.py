@@ -1,4 +1,5 @@
 import re
+import time
 from typing import List, Tuple
 
 
@@ -101,15 +102,21 @@ class EngineSchematics:
 
 
 def main():
+    # Part 1
     with open(r"2023\Day_03.txt", "r") as file:
         data = file.readlines()
 
     engine1 = EngineSchematics(data)
     result1 = sum(engine1.get_valid_numbers())
     print(result1)
+
+    # Part 2
     result2 = sum(engine1.get_gear_numbers())
     print(result2)
 
 
 if __name__ == "__main__":
+    start = time.perf_counter()
     main()
+    end = time.perf_counter()
+    print(f"\nExecuted in: {end - start} s")
