@@ -41,4 +41,4 @@ if __name__ == "__main__":
     start = time.perf_counter()
     main()
     end = time.perf_counter()
-    print(end - start)
+    print(f"\nExecuted in: {end - start} s")

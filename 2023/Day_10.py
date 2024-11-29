@@ -176,4 +176,4 @@ if __name__ == "__main__":
     start = time.perf_counter()
     main()
     end = time.perf_counter()
-    print(f"Code has executed in: {end - start} s")
+    print(f"\nExecuted in: {end - start} s")

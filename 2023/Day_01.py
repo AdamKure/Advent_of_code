@@ -73,7 +73,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    # Measure execution time of the main function
     start = time.perf_counter()
     main()
     end = time.perf_counter()
