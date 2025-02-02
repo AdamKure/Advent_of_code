@@ -1,7 +1,7 @@
+import re
 import time
-from collections import Counter
 
-DAY = 1
+DAY = 3
 
 
 def read_files(day: int) -> tuple[str, str]:
@@ -15,23 +15,17 @@ def read_files(day: int) -> tuple[str, str]:
 
 
 def part_1(data: str) -> None:
-    lines = data.split("\n")
-    a = sorted(map(int, (line.split("  ")[0] for line in lines)))
-    b = sorted(map(int, (line.split("  ")[1] for line in lines)))
-
-    total = sum(abs(x - y) for x, y in zip(a, b))
-
+    total = 0
+    for x, y in re.findall(r"mul\((\d{1,3}),(\d{1,3})\)", data):
+        total += int(x) * int(y)
     print(f"Part 1 is: {total}")
 
 
 def part_2(data: str) -> None:
-    lines = data.split("\n")
-    a = map(int, (line.split("  ")[0] for line in lines))
-    b = map(int, (line.split("  ")[1] for line in lines))
-
-    c = Counter(b)
-    total = sum(num * c[num] for num in a)
-
+    memory = re.sub(r"don't\(\).*?(do\(\)|$)", "", data, flags=re.DOTALL)
+    total = 0
+    for x, y in re.findall(r"mul\((\d{1,3}),(\d{1,3})\)", memory):
+        total += int(x) * int(y)
     print(f"Part 2 is: {total}")
 
 
