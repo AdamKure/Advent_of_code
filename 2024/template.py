@@ -1,5 +1,7 @@
 import time
 
+DAY = 0
+
 
 def read_files(day: int) -> tuple[str, str]:
     with open(f"2024/Day_{day:02}_example.txt", "r") as file:
@@ -13,21 +15,22 @@ def read_files(day: int) -> tuple[str, str]:
 
 def part_1(data: str) -> None:
     pass
+    print(f"Part 1 is: {}")
 
 
 def part_2(data: str) -> None:
     pass
+    print(f"Part 2 is: {}")
 
 
 def main() -> None:
-    day = 1
-    example, real_input = read_files(day)
+    example, real_input = read_files(DAY)
 
     part_1(example)
     part_1(real_input)
 
-    part_2(example)
-    part_2(real_input)
+    # part_2(example)
+    # part_2(real_input)
 
 
 if __name__ == "__main__":
