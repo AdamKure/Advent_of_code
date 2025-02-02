@@ -1,6 +1,6 @@
 import re
 import time
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 # Dictionary to convert number words to digits
 WORD2NUM = {
