@@ -15,12 +15,12 @@ def read_files(day: int) -> tuple[str, str]:
 
 def part_1(data: str) -> None:
     pass
-    print(f"Part 1 is: {}")
+    print("Part 1 is:")
 
 
 def part_2(data: str) -> None:
     pass
-    print(f"Part 2 is: {}")
+    print("Part 2 is:")
 
 
 def main() -> None:
@@ -29,8 +29,8 @@ def main() -> None:
     part_1(example)
     part_1(real_input)
 
-    # part_2(example)
-    # part_2(real_input)
+    part_2(example)
+    part_2(real_input)
 
 
 if __name__ == "__main__":
